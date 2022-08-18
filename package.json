@@ -1,7 +1,8 @@
 {
-  "name": "paprikast",
+  "name": "paprikastore",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "homepage":"https://melisaailensalazar.github.io/paprikast",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.3.0",
@@ -40,7 +41,6 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^4.0.0",
-    "homepage":"https://melisaailensalazar.github.io/paprikast"
+    "gh-pages": "^4.0.0"
   }
 }
