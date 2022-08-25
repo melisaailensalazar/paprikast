@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-
+import Button from "react-bootstrap/Button";
 import "../styles/ItemCount.css";
 
 const ItemCount = ({ onAdd, initial, stock }) => {
@@ -30,15 +30,15 @@ const ItemCount = ({ onAdd, initial, stock }) => {
         </button>
       </div>
 
-      <button
-        className="button-primary"
+      <Button
+        variant="success"
         onClick={() => {
           onAdd(qty);
         }}
         disabled={stock === 0 ? true : null}
       >
         Añadir
-      </button>
+      </Button>
     </div>
   );
 };
