@@ -1,0 +1,8 @@
+.item-list-container__title {
+    text-align: center;
+    margin: 30px 0;
+    font-size: 2rem;
+    background-color: darkolivegreen;
+    color:white;
+    padding:5px;
+}
