@@ -1,34 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Item from "./Item";
-import { productList } from "../../data/data.js";
+import { getAllProductsFromDB } from "../../helpers/getData.js";
 
 import "../styles/ItemList.css";
 
 const ItemList = () => {
   const [products, setProducts] = useState([]);
 
-  const getProducts = new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (true) {
-        resolve(productList);
-      } else {
-        reject();
-      }
-    }, 2000);
-  });
-
-  const getProductsFromDB = async () => {
-    try {
-      const result = await getProducts;
-      setProducts(result);
-    } catch (error) {
-      console.error(error);
-      alert("No podemos mostrar los productos en este momento");
-    }
-  };
-
   useEffect(() => {
-    getProductsFromDB();
+    getAllProductsFromDB(setProducts);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

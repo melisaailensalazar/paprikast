@@ -2,7 +2,7 @@ import React from "react";
 import ItemCount from "./ItemCount.js";
 import Card from "react-bootstrap/Card";
 
-const Item = ({ name, thumbnail, price, id, stock }) => {
+const Item = ({ name, thumbnail, price, id, stock, description }) => {
   const onAdd = (qty) => {
     alert(`Has agregado ${qty} producto/s 🍃`);
   };
