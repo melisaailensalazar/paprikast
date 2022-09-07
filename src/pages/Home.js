@@ -1,13 +1,13 @@
 import React from "react";
 import ItemListContainer from "../components/Productos/ItemListContainer";
 
-const Products = () => {
-  console.log("products");
+const Home = () => {
   return (
-    <main className={"product-page-container"}>
+    <main>
+      <h1>Paprika</h1>
       <ItemListContainer />
     </main>
   );
 };
 
-export default Products;
+export default Home;

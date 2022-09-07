@@ -1,20 +1,30 @@
-//importo los productos
 import { productList } from "../data/data.js";
 
 const getById = (id, array) => array.find((el) => el.id === id);
 
-// promesas
 const getProducts = new Promise((resolve, reject) => {
   setTimeout(() => {
     resolve(productList);
   }, 2000);
 });
 
-//Async Await que setea mi hook de estado
 const getAllProductsFromDB = async (setState) => {
   try {
     const result = await getProducts;
     setState(result);
+  } catch (error) {
+    console.log(error);
+    alert("No podemos mostrar los productos en este momento");
+  }
+};
+
+const getProductsByCategory = async (setState, category) => {
+  try {
+    const result = await getProducts;
+    const filt = await result.filter(
+      (product) => product.type.toLowerCase() === category.toLowerCase()
+    );
+    setState(filt);
   } catch (error) {
     console.log(error);
     alert("No podemos mostrar los productos en este momento");
@@ -30,4 +40,4 @@ const getProductById = async (id, setState) => {
   }
 };
 
-export { getAllProductsFromDB, getProductById };
+export { getAllProductsFromDB, getProductById, getProductsByCategory };

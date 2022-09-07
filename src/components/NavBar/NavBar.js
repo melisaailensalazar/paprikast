@@ -4,8 +4,7 @@ import Navbar from "react-bootstrap/Navbar";
 import logo from "../../logo.png";
 import React from "react";
 import CartWidget from "./CartWidget";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { Link, NavLink } from "react-router-dom";
 
 function ColorSchemesExample() {
   return (
@@ -23,9 +22,18 @@ function ColorSchemesExample() {
             Paprika
           </Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#store">Tienda</Nav.Link>
-            <Nav.Link href="#faq">Preguntas frecuentes</Nav.Link>
+            <NavLink to="/">
+              <Nav.Link>Home</Nav.Link>
+            </NavLink>
+            <NavLink to="/products">
+              <Nav.Link>Suculentas</Nav.Link>
+            </NavLink>
+            <NavLink to="/products">
+              <Nav.Link>Cactus</Nav.Link>
+            </NavLink>
+            <NavLink to="/products">
+              <Nav.Link>Plantas</Nav.Link>
+            </NavLink>
             <CartWidget />
           </Nav>
         </Container>
