@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import "../styles/ItemCount.css";
 
 const ItemCount = ({ onAdd, initial, stock }) => {
-  const [qty, setQty] = useState(initial);
+  const [qty, setQty] = useState(false);
 
   const addProduct = (num) => {
     setQty(qty + num);

@@ -22,18 +22,10 @@ function ColorSchemesExample() {
             Paprika
           </Navbar.Brand>
           <Nav className="me-auto">
-            <NavLink to="/">
-              <Nav.Link>Home</Nav.Link>
-            </NavLink>
-            <NavLink to="/products">
-              <Nav.Link>Suculentas</Nav.Link>
-            </NavLink>
-            <NavLink to="/products">
-              <Nav.Link>Cactus</Nav.Link>
-            </NavLink>
-            <NavLink to="/products">
-              <Nav.Link>Plantas</Nav.Link>
-            </NavLink>
+            <NavLink to="/">Home</NavLink>
+            <NavLink to="/products/suculentas">Suculentas</NavLink>
+            <NavLink to="/products/cactus">Cactus</NavLink>
+            <NavLink to="/products/plantas">Plantas</NavLink>
             <CartWidget />
           </Nav>
         </Container>
