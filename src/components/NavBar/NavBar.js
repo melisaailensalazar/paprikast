@@ -26,7 +26,11 @@ function ColorSchemesExample() {
             <NavLink to="/products/suculentas">Suculentas</NavLink>
             <NavLink to="/products/cactus">Cactus</NavLink>
             <NavLink to="/products/plantas">Plantas</NavLink>
-            <CartWidget />
+            <div className="rightmenu">
+              <NavLink to="/cart" className="item">
+                <CartWidget />
+              </NavLink>
+            </div>
           </Nav>
         </Container>
       </Navbar>

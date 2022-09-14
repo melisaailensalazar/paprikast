@@ -1,14 +1,13 @@
-import React from "react";
+import React, { useState, useContext } from "react";
+import { CartContext } from "../../context/useContext";
 import ItemCount from "./ItemCount";
 
 import "../styles/ItemDetail.css";
 
 const ItemDetail = ({ item }) => {
-  const onAdd = (qty) => {
-    alert(`Has agregado ${qty} producto/s 🍃`);
-  };
+  const [add, setAdd] = useState(false);
+  const { addItem } = useContext(CartContext);
 
-  console.log(item);
   return (
     <article className="product-detail">
       <img src={item.thumbnail} alt="" className="product-detail__img" />
@@ -23,10 +22,9 @@ const ItemDetail = ({ item }) => {
           <li>Stock:</li>
           <li>{item.stock}</li>
         </ul>
-        <ItemCount stock={item.stock} initial={1} onAdd={onAdd} />
+        <ItemCount stock={item.stock} initial={1} onAdd={addItem} />
       </div>
     </article>
   );
 };
-
 export default ItemDetail;
