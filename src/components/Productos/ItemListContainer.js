@@ -1,26 +1,47 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import {
-  getAllProductsFromDB,
-  getProductsByCategory,
-} from "../../helpers/getData.js";
+  getFirestore,
+  collection,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
 import ItemList from "./ItemList";
 import "../styles/ItemListContainer.css";
 
-const ItemListContainer = () => {
-  let { category } = useParams();
-  console.log(category);
+export const ItemListContainer = () => {
+  let { categoryId } = useParams();
 
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    if (category) {
-      getProductsByCategory(setProducts, category);
+    const querydb = getFirestore();
+    const queryCollection = collection(querydb, "products");
+
+    if (categoryId) {
+      const queryFilter = query(
+        queryCollection,
+        where("category", "==", "categoryId")
+      );
+      getDocs(queryFilter).then((res) =>
+        setProducts(
+          res.docs.map((product) => ({ id: product.id, ...product.data() }))
+        )
+      );
     } else {
-      getAllProductsFromDB(setProducts);
+      const queryFilter = query(
+        queryCollection,
+        where("category", "==", "categoryId")
+      );
+      getDocs(queryCollection).then((res) =>
+        setProducts(
+          res.docs.map((product) => ({ id: product.id, ...product.data() }))
+        )
+      );
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [categoryId]);
+
   return (
     <section className="item-list-container">
       <h2 className="item-list-container__title">Productos destacados</h2>

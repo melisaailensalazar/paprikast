@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { getProductById } from "../../helpers/getData.js";
+import { getFirestore, doc, getDoc } from "firebase/firestore";
 import ItemDetail from "./ItemDetail";
 import "../styles/ItemDetailContainer.css";
+import { useParams } from "react-router-dom";
 
-const ItemDetailContainer = ({ id }) => {
+export const ItemDetailContainer = () => {
   const [product, setProduct] = useState(null);
+  const { detalleId } = useParams();
 
   useEffect(() => {
-    getProductById(Number(id), setProduct);
-    console.log(product);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
+    getDoc(doc(getFirestore(), "products", "detalleId")).then((res) =>
+      setProduct({ id: res.id, ...res.product() })
+    );
+  }, []);
 
   return (
     <section className="item-detail-container">
