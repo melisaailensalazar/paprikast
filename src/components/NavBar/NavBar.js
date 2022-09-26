@@ -1,41 +1,55 @@
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import logo from "../../logo.png";
-import React from "react";
 import CartWidget from "./CartWidget";
-import { Link, NavLink } from "react-router-dom";
+import "../styles/NavBar.css";
+import Logo from "../../logo.png";
+import { NavLink, Link } from "react-router-dom";
 
-function ColorSchemesExample() {
+const Navbar = () => {
   return (
-    <>
-      <Navbar bg="light" variant="light">
-        <Container>
-          <Navbar.Brand href="#home">
-            <img
-              src={logo}
-              className="d-inline-block align-top"
-              alt="logo"
-              width="30"
-              height="30"
-            />{" "}
-            Paprika
-          </Navbar.Brand>
-          <Nav className="me-auto">
-            <NavLink to="/">Home</NavLink>
-            <NavLink to="/products/suculentas">Suculentas</NavLink>
-            <NavLink to="/products/cactus">Cactus</NavLink>
-            <NavLink to="/products/plantas">Plantas</NavLink>
-            <div className="rightmenu">
-              <NavLink to="/cart" className="item">
-                <CartWidget />
-              </NavLink>
-            </div>
-          </Nav>
-        </Container>
-      </Navbar>
-    </>
+    <nav className="nav-container">
+      <Link to="/">
+        <div>
+          <img className="nav-brand" src={Logo} alt="logo" />
+        </div>
+      </Link>
+      <div className="navegacion">
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "claseActive" : "claseInactive"
+          }
+          to="/"
+        >
+          Inicio
+        </NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "claseActive" : "claseInactive"
+          }
+          to="/productos/plantas"
+        >
+          Plantas
+        </NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "claseActive" : "claseInactive"
+          }
+          to="/productos/suculentas"
+        >
+          Suculentas
+        </NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "claseActive" : "claseInactive"
+          }
+          to="/productos/cactus"
+        >
+          Cactus
+        </NavLink>
+      </div>
+      <div>
+        <CartWidget />
+      </div>
+    </nav>
   );
-}
+};
 
-export default ColorSchemesExample;
+export default Navbar;

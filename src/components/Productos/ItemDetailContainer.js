@@ -1,24 +1,45 @@
-import React, { useEffect, useState } from "react";
-import { getFirestore, doc, getDoc } from "firebase/firestore";
-import ItemDetail from "./ItemDetail";
+import { useState, useEffect } from "react";
 import "../styles/ItemDetailContainer.css";
+import { ItemDetail } from "./ItemDetail";
 import { useParams } from "react-router-dom";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../firebase/config";
 
 export const ItemDetailContainer = () => {
-  const [product, setProduct] = useState(null);
-  const { detalleId } = useParams();
+  const { productId } = useParams();
+
+  const [item, setItem] = useState({});
+
+  // const getItem = (id)=>{
+  //     return new Promise((resolve, reject)=>{
+  //         const product = arregloProductos.find(item=>item.id === parseInt(id));
+  //         resolve(product)
+  //     })
+  // }
 
   useEffect(() => {
-    getDoc(doc(getFirestore(), "products", "detalleId")).then((res) =>
-      setProduct({ id: res.id, ...res.product() })
-    );
-  }, []);
+    const queryRef = doc(db, "items", productId);
+    getDoc(queryRef)
+      .then((response) => {
+        const newDoc = {
+          ...response.data(),
+          id: response.id,
+        };
+        console.log(newDoc);
+        setItem(newDoc);
+      })
+      .catch((error) => console.log(error));
+    // const getProducto = async()=>{
+    //     const producto = await getItem(productId);
+    //     setItem(producto);
+    // }
+    // getProducto();
+  }, [productId]);
 
   return (
-    <section className="item-detail-container">
-      {product ? <ItemDetail item={product} /> : <p>Obteniendo producto...</p>}
-    </section>
+    <div className="item-detail-container">
+      <p style={{ width: "100%", color: "white" }}>item detail container</p>
+      <ItemDetail item={item} />
+    </div>
   );
 };
-
-export default ItemDetailContainer;

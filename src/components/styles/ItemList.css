@@ -1,7 +1,10 @@
-.product-list-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, 300px);
-    justify-content: center;
-    gap: 30px 60px;
-    margin: 40px 20px;
+.estilos-listado {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #999;
+    color: white;
+    width: 90%;
+    height: auto;
 }

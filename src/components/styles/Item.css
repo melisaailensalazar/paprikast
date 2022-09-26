@@ -1,0 +1,33 @@
+.tarjeta-producto {
+    width: 100px;
+    height: auto;
+    margin: 10px;
+    padding: 10px;
+    background-color: #333;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.tarjeta-producto h4,
+p {
+    margin: 0;
+    font-size: 14px;
+    color: white;
+}
+
+.tarjeta-producto img {
+    width: 100%;
+}
+
+.boton-ver {
+    font-size: 14px;
+    padding: 2px;
+    border-radius: 5px;
+    background-color: darkolivegreen;
+    color: white;
+    margin: 2px;
+    box-shadow: none;
+}

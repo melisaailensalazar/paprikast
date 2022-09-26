@@ -1,30 +1,35 @@
-import React, { useState, useContext } from "react";
-import { CartContext } from "../../context/useContext";
+import { useState } from "react";
+import { useContext } from "react";
+import { CartContext } from "../../context/CartContext";
 import ItemCount from "./ItemCount";
-
 import "../styles/ItemDetail.css";
+import { Link } from "react-router-dom";
 
-const ItemDetail = ({ item }) => {
-  const [add, setAdd] = useState(false);
-  const { addItem } = useContext(CartContext);
+export const ItemDetail = ({ item }) => {
+  const { addProduct } = useContext(CartContext);
+  const [quantity, setQuantity] = useState(0);
+
+  const onAdd = (count) => {
+    addProduct(item, count);
+    setQuantity(count);
+  };
 
   return (
-    <article className="product-detail">
-      <img src={item.thumbnail} alt="" className="product-detail__img" />
-      <div className="product-detail__info">
-        <h2 className="name">{item.name}</h2>
-        <p className="description">{item.description}</p>
-        <ul className="info-grid">
-          <li>Nombre:</li>
-          <li>{item.name}</li>
-          <li>Precio:</li>
-          <li>${item.price}</li>
-          <li>Stock:</li>
-          <li>{item.stock}</li>
-        </ul>
-        <ItemCount stock={item.stock} initial={1} onAdd={addItem} />
+    <div className="detail-container">
+      <p style={{ width: "100%" }}>item detail</p>
+      <div className="img-container">
+        <img src={item.pictureUrl} alt={item.title} />
       </div>
-    </article>
+      <div className="img-container">
+        <h4>{item.title}</h4>
+        <h5>$ {item.price}</h5>
+      </div>
+      <ItemCount initial={1} stock={10} onAdd={onAdd} />
+      {quantity > 0 && (
+        <Link to="/cart">
+          <button>Ir al carrito</button>
+        </Link>
+      )}
+    </div>
   );
 };
-export default ItemDetail;

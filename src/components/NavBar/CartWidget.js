@@ -1,20 +1,32 @@
-import React, { useContext } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
-import "../styles/CartWidget.css";
-import { CartContext } from "../../context/useContext";
+import Carrito from "../../carrito.png";
+import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { CartContext } from "../../context/CartContext";
 
 const CartWidget = () => {
-  const { items } = useContext(CartContext);
-
-  items.map((item) => {
-    itemsInCart = itemsInCart + item.qty;
-  });
+  const { getTotalProducts, productCartList } = useContext(CartContext);
 
   return (
-    <div className="cart">
-      <FontAwesomeIcon name="cart" icon={faCartShopping} />
-      <span class="qty-display">0</span>
+    <div>
+      {productCartList.length > 0 && (
+        <>
+          <Link to="/cart">
+            <img src={Carrito} alt="Carrito" style={{ width: 20 }} />
+          </Link>
+          <span
+            style={{
+              backgroundColor: "white",
+              borderRadius: "50%",
+              width: "10px",
+              heigth: "10px",
+              fontSize: "10px",
+              color: "black",
+            }}
+          >
+            {getTotalProducts()}
+          </span>
+        </>
+      )}
     </div>
   );
 };
